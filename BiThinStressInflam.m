@@ -71,8 +71,8 @@ CS    = parA(5);					% gain parameter for flow-induced contraction
 %
 %** G&R parameters
 %
-Tqoc = 7;							% collagen half-life (hypertensive) (days)
-Tqom = (1/etaq)*Tqoc;				% smooth muscle half-life (days)
+Tqoc = 7;							% collagen mean lifetime (hypertensive) (days)
+Tqom = (1/etaq)*Tqoc;				% smooth muscle mean lifetime (days)
 kmco = [1/Tqom,1/Tqoc,1/Tqoc,1/Tqoc,...	% ko circ m M, ax c M, diag c M, diag c M
 		1/Tqoc,1/Tqoc,1/Tqoc,1/Tqoc];	% ko circ c A, ax c A, diag c A, diag c A
 %
@@ -93,7 +93,7 @@ Tinf = 1/kinf;						% characteristic time for inflammatory cell clearance (days)
 %
 Ds = min(Tqom,Tqoc)/20;				% G&R time step
 %
-numHl = 20;							% number of half-lives (Tqo) to consider for heredity integrals
+numHl = 20;							% number of mean lifetimes (Tqo) to consider for heredity integrals
 %
 domain = numHl*max(Tqom,Tqoc);		% total integration domain
 t = (0:Ds:domain)';					% integration times for past histories
@@ -258,8 +258,8 @@ for k = 1:steps
 		%
 		%* additional variables from converged solution
 		%
-		lrM = JM/ltM/lz(k);								% medial radial strech
-		lrA = JA/ltA/lz(k);								% advent radial strech
+		lrM = JM/ltM/lz(k);								% medial radial stretch
+		lrA = JA/ltA/lz(k);								% advent radial stretch
 		%
 		hM(k) = lrM*hMo;								% medial thickness
 		hA(k) = lrA*hAo;								% advent thickness
